@@ -1,0 +1,62 @@
+import axios from "axios";
+
+// Live backend API
+const API_URL = "https://abin-portfolio-api.onrender.com/api";
+
+const API = axios.create({
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// ================================
+// PROJECTS
+// ================================
+
+export const getProjects = async () => {
+  const response = await API.get("/projects");
+  return response.data;
+};
+
+// ================================
+// GET SINGLE PROJECT
+// ================================
+
+export const getProject = async (id) => {
+  const response = await API.get(`/projects/${id}`);
+  return response.data;
+};
+
+// ================================
+// CREATE PROJECT
+// ================================
+
+export const createProject = async (projectData) => {
+  const response = await API.post("/projects", projectData);
+  return response.data;
+};
+
+// ================================
+// UPDATE PROJECT
+// ================================
+
+export const updateProject = async (id, projectData) => {
+  const response = await API.put(`/projects/${id}`, projectData);
+  return response.data;
+};
+
+// ================================
+// DELETE PROJECT
+// ================================
+
+export const deleteProject = async (id) => {
+  const response = await API.delete(`/projects/${id}`);
+  return response.data;
+};
+
+// ================================
+// DEFAULT API INSTANCE
+// ================================
+
+export default API;
